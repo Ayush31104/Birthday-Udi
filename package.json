@@ -1,0 +1,12 @@
+{
+  "name": "birthday-site",
+  "version": "1.0.0",
+  "scripts": {
+    "frontend": "cd frontend && npm run dev",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
