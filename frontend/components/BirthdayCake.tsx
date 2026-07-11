@@ -6,19 +6,18 @@ export default function BirthdayCake() {
   return (
     <motion.div
       className="flex justify-center items-center relative"
-      animate={{ y: [0, -10, 0] }}
+      animate={{ y: [0, -10, 0], rotate: [0, 0.8, -0.4, 0] }}
       transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
       style={{ willChange: "transform" }}
       aria-label="Elegant birthday cake"
     >
-      {/* Warm ambient glow behind cake */}
       <motion.div
         className="absolute rounded-full"
         style={{
-          width: "260px",
-          height: "200px",
-          background: "radial-gradient(ellipse, rgba(200,90,90,0.14) 0%, rgba(255,127,155,0.08) 50%, transparent 70%)",
-          filter: "blur(28px)",
+          width: "300px",
+          height: "240px",
+          background: "radial-gradient(ellipse, rgba(200,90,90,0.16) 0%, rgba(255,127,155,0.09) 50%, transparent 70%)",
+          filter: "blur(32px)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -27,9 +26,29 @@ export default function BirthdayCake() {
         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
       />
 
+      <motion.div
+        className="absolute left-4 top-8 opacity-70"
+        animate={{ opacity: [0.4, 0.8, 0.4], y: [0, -6, 0] }}
+        transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 1L10.7 7.3L17 9L10.7 10.7L9 17L7.3 10.7L1 9L7.3 7.3L9 1Z" fill="#D4AF97" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        className="absolute right-3 top-12 opacity-70"
+        animate={{ opacity: [0.35, 0.75, 0.35], y: [0, -8, 0] }}
+        transition={{ duration: 3.8, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M7 1L8.1 5.9L13 7L8.1 8.1L7 13L5.9 8.1L1 7L5.9 5.9L7 1Z" fill="#C85A5A" />
+        </svg>
+      </motion.div>
+
       <svg
-        width="240"
-        height="265"
+        width="280"
+        height="300"
         viewBox="0 0 240 265"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

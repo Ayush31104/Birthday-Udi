@@ -1,0 +1,45 @@
+{
+  "hero": "/uploads/hero_profile.jpg",
+  "gallery": [
+    {
+      "id": 1783759431592,
+      "src": "/uploads/gallery_IMG_20250616_174234_1783759431581.jpg",
+      "caption": "Just before you went for Dubai"
+    },
+    {
+      "id": 1783759431626,
+      "src": "/uploads/gallery_IMG-20230210-WA0018_1783759431621.jpg",
+      "caption": "This was 12th Farewell "
+    },
+    {
+      "id": 1783759431651,
+      "src": "/uploads/gallery_IMG-20230804-WA0022_1783759431647.jpg",
+      "caption": "Happy Birthday Mommy"
+    },
+    {
+      "id": 1783759431674,
+      "src": "/uploads/gallery_IMG-20230822-WA0030_1783759431670.jpg",
+      "caption": "You being you!!"
+    },
+    {
+      "id": 1783759431696,
+      "src": "/uploads/gallery_IMG-20230822-WA0048_1783759431692.jpg",
+      "caption": "I don't know when was this but it's beautiful"
+    },
+    {
+      "id": 1783759431720,
+      "src": "/uploads/gallery_IMG-20230822-WA0050_1783759431717.jpg",
+      "caption": "What were you doing!!"
+    },
+    {
+      "id": 1783759431744,
+      "src": "/uploads/gallery_Snapchat-262786242_1783759431738.jpg",
+      "caption": "Love this picture!!"
+    },
+    {
+      "id": 1783759438182,
+      "src": "/uploads/gallery_Udi_Poster_1783759438176.png",
+      "caption": "Just a collection of our convos!!"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-export const BIRTHDAY_NAME = "Mia"; // ← Change this name
+export const BIRTHDAY_NAME = "Udi"; // ← Change this name
 
 export const COLORS = {
   // Primary pinks

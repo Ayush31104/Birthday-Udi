@@ -14,32 +14,32 @@ export default function ElegantButton({ onClick, children, className = "" }: Ele
 
   return (
     <motion.button
-      className={`relative cursor-pointer select-none overflow-hidden
-        text-white font-medium text-sm
-        px-10 py-[14px] rounded-full
-        ${className}`}
+      className={`relative cursor-pointer select-none overflow-hidden text-white
+        px-6 py-[12px] sm:px-10 sm:py-[13px] rounded-full border border-white/30
+        text-[12px] sm:text-[16px] ${className}`}
       style={{
         background: isHovered
-          ? "linear-gradient(135deg, #A85555 0%, #C85A5A 35%, #FF7F9B 75%, #D5A6A6 100%)"
-          : "linear-gradient(135deg, #C85A5A 0%, #A85555 40%, #C85A5A 100%)",
+          ? "linear-gradient(135deg, rgba(255,127,155,0.96) 0%, rgba(200,90,90,0.95) 40%, rgba(168,85,85,0.95) 100%)"
+          : "linear-gradient(135deg, rgba(200,90,90,0.92) 0%, rgba(168,85,85,0.92) 45%, rgba(213,166,166,0.95) 100%)",
         boxShadow: isHovered
-          ? "0 10px 36px rgba(200,90,90,0.5), 0 4px 12px rgba(168,85,85,0.35), inset 0 1px 0 rgba(255,255,255,0.22)"
-          : "0 5px 22px rgba(200,90,90,0.32), 0 2px 6px rgba(168,85,85,0.22), inset 0 1px 0 rgba(255,255,255,0.18)",
-        border: "1px solid rgba(255,255,255,0.25)",
-        letterSpacing: "0.13em",
-        fontFamily: "var(--font-inter), system-ui, sans-serif",
+          ? "0 14px 40px rgba(200,90,90,0.32), inset 0 1px 0 rgba(255,255,255,0.24)"
+          : "0 10px 30px rgba(200,90,90,0.22), inset 0 1px 0 rgba(255,255,255,0.18)",
+        letterSpacing: "0.15em",
+        fontFamily: "var(--font-poppins), system-ui, sans-serif",
+        fontWeight: 500,
         textTransform: "uppercase",
-        transition: "background 0.4s ease, box-shadow 0.4s ease",
+        backdropFilter: "blur(14px)",
+        WebkitBackdropFilter: "blur(14px)",
+        transition: "background 0.35s ease, box-shadow 0.35s ease",
       }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={onClick}
-      whileHover={{ scale: 1.05, y: -4 }}
+      whileHover={{ scale: 1.03, y: -3 }}
       whileTap={{ scale: 0.97, y: 0 }}
       transition={{ duration: 0.24, ease: "easeOut" }}
       aria-label="Start birthday surprise"
     >
-      {/* Shimmer sweep */}
       <AnimatePresence>
         {isHovered && (
           <motion.div
@@ -55,15 +55,18 @@ export default function ElegantButton({ onClick, children, className = "" }: Ele
         )}
       </AnimatePresence>
 
-      {/* Top highlight line */}
       <div
         className="absolute top-0 left-[15%] right-[15%] h-px rounded-full"
-        style={{ background: "rgba(255,255,255,0.35)" }}
+        style={{ background: "rgba(255,255,255,0.34)" }}
       />
 
-      <span className="relative z-10 flex items-center gap-3">
+      <motion.span
+        className="relative z-10 flex items-center justify-center gap-3"
+        animate={{ x: isHovered ? 3 : 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
         {children}
-      </span>
+      </motion.span>
     </motion.button>
   );
 }
