@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import useIsMobile from "@/hooks/useIsMobile";
 // Static seed — no Math.random() at module level (prevents SSR hydration mismatch)
 const PETAL_DATA = [
   { id: 0,  left: "4%",  delay: 0,    duration: 15, size: 20, drift: 28,  colorA: "#FFC0CB", colorB: "#FF7F9B" },
@@ -54,9 +54,14 @@ function RosePetal({ size, colorA, colorB, id }: { size: number; colorA: string;
 }
 
 export default function FloatingPetals() {
+
+  const isMobile = useIsMobile();
+  const petals = isMobile
+  ? PETAL_DATA.slice(0, 6)
+  : PETAL_DATA;
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      {PETAL_DATA.map((petal) => (
+      {petals.map((petal) => (
         <motion.div
           key={petal.id}
           className="absolute"
@@ -65,10 +70,14 @@ export default function FloatingPetals() {
             y: ["0px", "112vh"],
             x: [0, petal.drift * 0.5, petal.drift, petal.drift * 0.7, petal.drift * 1.1],
             rotate: [0, 45, 110, 180, 240],
-            opacity: [0, 0.75, 0.6, 0.45, 0],
+            opacity: isMobile
+  ? [0, 0.45, 0.3, 0]
+  : [0, 0.75, 0.6, 0.45, 0],
           }}
           transition={{
-            duration: petal.duration,
+            duration: isMobile
+  ? petal.duration + 6
+  : petal.duration,
             repeat: Infinity,
             delay: petal.delay,
             ease: "linear",

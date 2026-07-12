@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import useIsMobile from "@/hooks/useIsMobile";
 
 const BOKEH_DATA = [
   { id: 0,  left: "5%",  top: "12%", size: 140, color: "rgba(255,192,203,0.22)", delay: 0,   duration: 9  },
@@ -15,26 +16,37 @@ const BOKEH_DATA = [
 ];
 
 export default function BokehLights() {
+
+  const isMobile = useIsMobile();
+
+  const orbs = isMobile
+    ? BOKEH_DATA.slice(0, 3)
+    : BOKEH_DATA;
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      {BOKEH_DATA.map((orb) => (
+      {orbs.map((orb) => (
         <motion.div
           key={orb.id}
           className="absolute rounded-full"
           style={{
             left: orb.left,
             top: orb.top,
-            width: orb.size,
-            height: orb.size,
+            width: isMobile ? orb.size * 0.6 : orb.size,
+height: isMobile ? orb.size * 0.6 : orb.size,
             background: `radial-gradient(circle, ${orb.color} 0%, transparent 72%)`,
-            filter: "blur(22px)",
+            filter: isMobile ? "blur(10px)" : "blur(22px)",
+            willChange: "transform, opacity",
           }}
           animate={{
             scale:   [1, 1.15, 1],
-            opacity: [0.5, 0.9, 0.5],
+            opacity: isMobile
+  ? [0.35, 0.6, 0.35]
+  : [0.5, 0.9, 0.5],
           }}
           transition={{
-            duration: orb.duration,
+            duration: isMobile
+  ? orb.duration + 4
+  : orb.duration,
             repeat: Infinity,
             ease: "easeInOut",
             delay: orb.delay,

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-
+import useIsMobile from "@/hooks/useIsMobile";
 const SPARKLE_DATA = [
   { id: 0,  x: "4%",  y: "10%", size: 7,  delay: 0,    duration: 2.6, color: "#D4AF97" },
   { id: 1,  x: "13%", y: "32%", size: 5,  delay: 0.9,  duration: 3.2, color: "#C85A5A" },
@@ -42,20 +42,34 @@ function Sparkle({ size, color }: { size: number; color: string }) {
 }
 
 export default function GoldSparkles() {
+
+  const isMobile = useIsMobile();
+
+  const sparkles = isMobile
+    ? SPARKLE_DATA.slice(0, 7)
+    : SPARKLE_DATA;
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 1 }}>
-      {SPARKLE_DATA.map((s) => (
+      {sparkles.map((s) => (
         <motion.div
           key={s.id}
           className="absolute"
-          style={{ left: s.x, top: s.y }}
+          style={{
+  left: s.x,
+  top: s.y,
+  willChange: "transform, opacity",
+}}
           animate={{
             opacity: [0, 1, 0],
-            scale:   [0, 1.1, 0],
+            scale: isMobile
+  ? [0, 0.8, 0]
+  : [0, 1.1, 0],
             rotate:  [0, 45, 90],
           }}
           transition={{
-            duration: s.duration,
+            duration: isMobile
+  ? s.duration + 1.5
+  : s.duration,
             repeat: Infinity,
             delay: s.delay,
             ease: "easeInOut",

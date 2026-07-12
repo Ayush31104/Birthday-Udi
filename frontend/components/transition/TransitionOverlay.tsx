@@ -68,7 +68,7 @@ export default function TransitionOverlay({ onFinish }: Props) {
       <AnimatePresence mode="wait">
         <motion.h1
           key={step}
-          className="absolute text-center text-white text-5xl font-serif px-10"
+          className="absolute text-center text-white text-2xl font-serif px-10"
           initial={{
             opacity: 0,
             y: 30,
