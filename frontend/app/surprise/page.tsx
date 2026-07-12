@@ -1,5 +1,5 @@
 "use client";
-
+import LetterModal from "@/components/letter/LetterModal";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import GradientBackground from "@/components/GradientBackground";
@@ -279,83 +279,6 @@ function HeroSection({ heroSrc }: { heroSrc: string }) {
         </svg>
       </motion.div>
     </section>
-  );
-}
-
-// ─── Letter Modal ─────────────────────────────────────────────────────────────
-function LetterModal({ onClose }: { onClose: () => void }) {
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handler);
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", handler);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
-
-  return (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className="relative w-full max-w-3xl rounded-[32px] bg-white/95 border border-slate-300 shadow-[0_40px_120px_rgba(15,23,42,0.18)] overflow-hidden"
-        initial={{ scale: 0.96, opacity: 0, y: 24 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.98, opacity: 0, y: 20 }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm text-xl text-slate-700 transition-transform hover:scale-110"
-          aria-label="Close letter"
-        >
-          x
-        </button>
-
-        <div className="px-8 py-8 sm:px-12 sm:py-10">
-          <div className="mx-auto max-w-4xl text-center">
-            <h3 className="text-3xl font-semibold tracking-tight text-slate-900 bg-amber-50 italic" >
-              {LETTER.heading}
-            </h3>
-          </div>
-
-          <div className="mt-10 rounded-3xl overflow-y-auto hide-scrollbar border border-slate-200 bg-amber-50 shadow-inner">
-            <div
-              className="max-h-[75vh] overflow-y-scroll hide-scrollbar"
-              style={{
-                scrollbarWidth: "none",
-                msOverflowStyle: "none",
-              }}
-            >
-              <div
-                className="py-10"
-                style={{
-                  paddingLeft: "64px",
-                  paddingRight: "64px",
-                }}
-              >
-                {LETTER.body.split("\n\n").map((para, i) => (
-                  <p
-                    key={i}
-                    className="mb-8 whitespace-pre-line leading-9 text-justify first-line:indent-8"
-                  >
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
   );
 }
 

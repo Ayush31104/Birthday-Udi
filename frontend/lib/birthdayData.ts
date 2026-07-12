@@ -87,7 +87,7 @@ export const AMAZING_REASONS = [
 
 export const LETTER = {
   heading: "To My Best Friend Udi 🫂",
-  body: `Udi,
+  body: `
 
 I never thought I would get so close with you that you would become my best friend one day.
 I mean you were always a good friend to me but that also started only when you started coming for tuitions in my home,before that I never knew about you much. Well thank you for joining the chemistry class or else I would never have found a friend like you.

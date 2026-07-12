@@ -1,6 +1,7 @@
 "use client";
-
-import { motion } from "framer-motion";
+import TransitionOverlay from "@/components/transition/TransitionOverlay";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import GradientBackground from "@/components/GradientBackground";
 import FloatingPetals from "@/components/FloatingPetals";
@@ -110,17 +111,14 @@ function CornerOrnaments() {
 
 export default function LandingPage() {
   const router = useRouter();
+  const [transitioning, setTransitioning] = useState(false);
   const { x: springX, y: springY } = useParallax(0.01);
 
-  const handleStart = () => {
-    const target = document.getElementById("surprise-section");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    setTimeout(() => router.push("/surprise"), 280);
-  };
+const handleStart = () => {
+  if (transitioning) return;
 
+  setTransitioning(true);
+};
   return (
     <PageTransition>
       <GradientBackground />
@@ -130,12 +128,41 @@ export default function LandingPage() {
       <CornerOrnaments />
 
       <main className="relative min-h-screen flex items-center justify-center px-4 py-4 sm:px-6 lg:px-8 sm:py-6">
-        <motion.div style={{ x: springX, y: springY }} className="w-full max-w-[720px]">
+        <motion.div
+          style={{ x: springX, y: springY }}
+          className="w-full max-w-[720px]"
+          animate={
+            transitioning
+              ? {
+                  scale: 1.08,
+                  opacity: 0.3,
+                  filter: "blur(8px)",
+                }
+              : {
+                  scale: 1,
+                  opacity: 1,
+                  filter: "blur(0px)",
+                }
+          }
+          transition={{
+            duration: 1.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
           <ElegantCard className="relative text-center">
             <div className="absolute inset-0 pointer-events-none">
-              <SparkleAccent className="left-6 top-8 sm:left-8 sm:top-10" delay={0.2} />
-              <SparkleAccent className="right-6 top-10 sm:right-8 sm:top-12" delay={0.8} />
-              <SparkleAccent className="left-8 bottom-8 sm:left-10 sm:bottom-10" delay={1.2} />
+              <SparkleAccent
+                className="left-6 top-8 sm:left-8 sm:top-10"
+                delay={0.2}
+              />
+              <SparkleAccent
+                className="right-6 top-10 sm:right-8 sm:top-12"
+                delay={0.8}
+              />
+              <SparkleAccent
+                className="left-8 bottom-8 sm:left-10 sm:bottom-10"
+                delay={1.2}
+              />
             </div>
 
             <motion.div
@@ -145,8 +172,14 @@ export default function LandingPage() {
               className="relative flex flex-col items-center gap-4 sm:gap-5"
             >
               {/* --- Top heading and title area --- */}
-              <motion.div variants={staggerItem} className="flex items-center gap-3">
-                <div className="w-8 sm:w-10 h-px" style={{ background: "rgba(200,90,90,0.35)" }} />
+              <motion.div
+                variants={staggerItem}
+                className="flex items-center gap-3"
+              >
+                <div
+                  className="w-8 sm:w-10 h-px"
+                  style={{ background: "rgba(200,90,90,0.35)" }}
+                />
                 <span
                   className="text-[11px] sm:text-[12px] tracking-[0.38em] uppercase"
                   style={{
@@ -157,14 +190,18 @@ export default function LandingPage() {
                 >
                   {pageContent.eyebrow}
                 </span>
-                <div className="w-8 sm:w-10 h-px" style={{ background: "rgba(200,90,90,0.35)" }} />
+                <div
+                  className="w-8 sm:w-10 h-px"
+                  style={{ background: "rgba(200,90,90,0.35)" }}
+                />
               </motion.div>
 
               <motion.div variants={staggerItem} className="space-y-1.5">
                 <h1
                   className="text-[2rem] sm:text-[2.45rem] lg:text-[2.8rem] font-normal leading-[1.04]"
                   style={{
-                    fontFamily: "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
+                    fontFamily:
+                      "var(--font-cormorant), 'Cormorant Garamond', Georgia, serif",
                     color: "#7A4A5A",
                     letterSpacing: "0.015em",
                   }}
@@ -174,8 +211,10 @@ export default function LandingPage() {
                 <motion.h2
                   className="text-[3.2rem] sm:text-[4rem] lg:text-[4.7rem] font-semibold italic"
                   style={{
-                    fontFamily: "var(--font-great-vibes), 'Great Vibes', cursive",
-                    background: "linear-gradient(135deg, #C85A5A 0%, #FF7F9B 45%, #D5A6A6 100%)",
+                    fontFamily:
+                      "var(--font-great-vibes), 'Great Vibes', cursive",
+                    background:
+                      "linear-gradient(135deg, #C85A5A 0%, #FF7F9B 45%, #D5A6A6 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
@@ -184,19 +223,32 @@ export default function LandingPage() {
                     lineHeight: 1.5,
                     marginTop: "0.5rem",
                   }}
-                  animate={{ opacity: [0.9, 1, 0.9], scale: [0.98, 1.01, 0.98] }}
-                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{
+                    opacity: [0.9, 1, 0.9],
+                    scale: [0.98, 1.01, 0.98],
+                  }}
+                  transition={{
+                    duration: 4.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   {pageContent.name}
                 </motion.h2>
               </motion.div>
 
-              <motion.div variants={staggerItem} className="w-full max-w-[430px] px-1">
+              <motion.div
+                variants={staggerItem}
+                className="w-full max-w-[430px] px-1"
+              >
                 <OrnamentalDivider />
               </motion.div>
 
               {/* --- Main descriptive text area --- */}
-              <motion.div variants={staggerItem} className="max-w-[500px] space-y-2 px-2 sm:px-4">
+              <motion.div
+                variants={staggerItem}
+                className="max-w-[500px] space-y-2 px-2 sm:px-4"
+              >
                 <p
                   className="text-[13px] sm:text-[17px] leading-[1.9]"
                   style={{
@@ -223,7 +275,10 @@ export default function LandingPage() {
                 <BirthdayCake />
               </motion.div>
 
-              <motion.div variants={staggerItem} className="w-full max-w-[430px] px-1">
+              <motion.div
+                variants={staggerItem}
+                className="w-full max-w-[430px] px-1"
+              >
                 <OrnamentalDivider />
               </motion.div>
 
@@ -237,7 +292,11 @@ export default function LandingPage() {
                     viewBox="0 0 16 16"
                     fill="none"
                     animate={{ x: [0, 3, 0] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 1.6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   >
                     <path
                       d="M1 7H13M8 2L13 7L8 12"
@@ -260,7 +319,11 @@ export default function LandingPage() {
                   opacity: 0.7,
                 }}
                 animate={{ opacity: [0.45, 0.75, 0.45] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 {pageContent.footerLabel}
               </motion.p>
@@ -268,6 +331,13 @@ export default function LandingPage() {
           </ElegantCard>
         </motion.div>
       </main>
+      <AnimatePresence>
+  {transitioning && (
+    <TransitionOverlay
+      onFinish={() => router.push("/surprise")}
+    />
+  )}
+</AnimatePresence>
     </PageTransition>
   );
 }
