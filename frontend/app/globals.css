@@ -279,3 +279,15 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+/* Hide scrollbar for letter */
+#letter-scroll {
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+#letter-scroll::-webkit-scrollbar {
+  display: none;            /* Chrome, Edge, Safari */
+  width: 0;
+  height: 0;
+}

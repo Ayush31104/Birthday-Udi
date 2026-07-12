@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 type Props = {
   onFinish: () => void;
 };
-const isMobile = useIsMobile();
 const messages = [
   "I made something just for you...",
   "Because someone as special as you deserves it.",
@@ -15,6 +14,7 @@ const messages = [
 
 export default function TransitionOverlay({ onFinish }: Props) {
   const [step, setStep] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timers = [

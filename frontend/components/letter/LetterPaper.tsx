@@ -133,7 +133,10 @@ lg:text-3xl
         </div>
 
         {/* 2. SCROLLABLE INNER BODY CONTENT */}
-        <div className="overflow-y-auto hide-scrollbar flex-1 z-20 px-8 sm:px-16 my-2">
+        <div
+  id="letter-scroll"
+  className="overflow-y-auto flex-1 z-20 px-4 sm:px-16 my-2"
+>
           <div className="mx-auto w-full max-w-[580px] py-4">
             {/* Greeting */}
             <p
