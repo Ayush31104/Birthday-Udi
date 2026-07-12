@@ -13,5 +13,20 @@ app.use(express.json());
 
 app.use('/api/example', exampleRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const PORT = Number(process.env.PORT || 5000);
+
+function startServer(port) {
+  const server = app.listen(port, () => console.log(`Server running on port ${port}`));
+
+  server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+      console.warn(`Port ${port} is busy, trying ${port + 1}...`);
+      startServer(port + 1);
+      return;
+    }
+
+    throw err;
+  });
+}
+
+startServer(PORT);

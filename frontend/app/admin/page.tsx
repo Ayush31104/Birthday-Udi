@@ -405,7 +405,7 @@ export default function AdminPage() {
               }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#C85A5A,#FF7F9B)" }}>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "linear-gradient(135deg,#C85A5A,#FF7F9B)" }}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <circle cx="7" cy="5" r="3" stroke="white" strokeWidth="1.4" />
                     <path d="M2 12C2 9.791 4.239 8 7 8C9.761 8 12 9.791 12 12" stroke="white" strokeWidth="1.4" strokeLinecap="round" />

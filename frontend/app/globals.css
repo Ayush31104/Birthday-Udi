@@ -128,7 +128,7 @@ body {
   background: rgba(250, 246, 241, 0.78);
   backdrop-filter: blur(32px);
   -webkit-backdrop-filter: blur(32px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: px solid rgba(255, 255, 255, 0.9);
 }
 
 /* ── Shadows ────────────────────────────────────────────── */
@@ -260,3 +260,14 @@ body {
   50%       { transform: translateY(-6px); }
 }
 .animate-img-float { animation: imgFloat 4s ease-in-out infinite; }
+/* Hide scrollbar but keep scrolling enabled */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
