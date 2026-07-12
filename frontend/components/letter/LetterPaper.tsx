@@ -35,8 +35,9 @@ export default function LetterPaper({ onClose }: Props) {
         className="
           relative
           w-full
-          max-w-2xl
-          h-[92vh]
+          max-w-[360px]
+sm:max-w-2xl
+          h-[82vh]
           sm:h-[90vh]
           max-h-[750px]
           flex
@@ -116,9 +117,9 @@ sm:w-10
             className="
               mx-auto
               max-w-[580px]
-              text-xl
-sm:text-3xl
-lg:text-4xl
+              text-lg
+sm:text-2xl
+lg:text-3xl
               font-serif
               italic
               leading-tight
@@ -140,8 +141,8 @@ lg:text-4xl
                 mb-6
                 text-center
 sm:text-left
-                text-2xl
-sm:text-4xl
+                text-lg
+sm:text-xl
                 font-['Great_Vibes']
                 text-[#6b4e3c]
               "
@@ -164,9 +165,9 @@ sm:text-4xl
                   mb-6
                   text-justify
                   font-serif
-                  text-[17px]
-sm:text-[18px]
-                  leading-8
+                 text-[13px]
+sm:text-[15px]
+                  leading-7
 sm:leading-[1.9]
                   tracking-[0.01em]
                   text-[#4f4032]
@@ -184,10 +185,10 @@ sm:first-line:indent-8
         {/* 3. FOOTER SIGNATURE SECTION (Fixed inside border at bottom) */}
         <div className="relative px-5 sm:px-10 pt-2 pb-10 text-center sm:text-right shrink-0 z-20 bg-gradient-to-t from-[#f2e8d8]/80 to-transparent">
           <div className="mx-auto w-full max-w-[580px]">
-            <p className="text-sm sm:text-base text-[#6b4e3c] italic">
+            <p className="text-xs sm:text-sm text-[#6b4e3c] italic">
               Yours Truly,
             </p>
-            <p className="mt-1 text-2xl sm:text-3xl font-['Great_Vibes'] text-[#6b4e3c]">
+            <p className="mt-1 text-lg sm:text-2xl font-['Great_Vibes'] text-[#6b4e3c]">
               Ayush ❤️
             </p>
           </div>
