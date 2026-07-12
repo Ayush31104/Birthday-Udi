@@ -1,12 +1,12 @@
 "use client";
-import Envelope from "@/components/letter/Envelope";
+import useIsMobile from "@/hooks/useIsMobile";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type Props = {
   onFinish: () => void;
 };
-
+const isMobile = useIsMobile();
 const messages = [
   "I made something just for you...",
   "Because someone as special as you deserves it.",
@@ -18,9 +18,9 @@ export default function TransitionOverlay({ onFinish }: Props) {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStep(1), 1800),
-      setTimeout(() => setStep(2), 3600),
-      setTimeout(() => onFinish(), 6500),
+      setTimeout(() => setStep(1), 900),
+setTimeout(() => setStep(2), 1800),
+setTimeout(() => onFinish(), 3200),
     ];
 
     return () => timers.forEach(clearTimeout);
@@ -43,7 +43,7 @@ export default function TransitionOverlay({ onFinish }: Props) {
       />
 
       {/* Floating Particles */}
-      {[...Array(40)].map((_, i) => (
+      {[...Array(isMobile ? 8 : 40)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-[#F6D7A8]"
@@ -54,11 +54,15 @@ export default function TransitionOverlay({ onFinish }: Props) {
             top: `${Math.random() * 100}%`,
           }}
           animate={{
-            y: [-20, 20, -20],
+            y: isMobile
+  ? [-8, 8, -8]
+  : [-20, 20, -20],
             opacity: [0.1, 0.6, 0.1],
           }}
           transition={{
-            duration: 4 + Math.random() * 3,
+            duration: isMobile
+  ? 8 + Math.random() * 2
+  : 4 + Math.random() * 3,
             repeat: Infinity,
           }}
         />
@@ -82,7 +86,7 @@ export default function TransitionOverlay({ onFinish }: Props) {
             y: -30,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.45,
           }}
         >
           {messages[step]}

@@ -1,4 +1,5 @@
 "use client";
+import useIsMobile from "@/hooks/useIsMobile";
 import TransitionOverlay from "@/components/transition/TransitionOverlay";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -113,6 +114,7 @@ export default function LandingPage() {
   const router = useRouter();
   const [transitioning, setTransitioning] = useState(false);
   const { x: springX, y: springY } = useParallax(0.01);
+  const isMobile = useIsMobile();
 
 const handleStart = () => {
   if (transitioning) return;
@@ -122,14 +124,21 @@ const handleStart = () => {
   return (
     <PageTransition>
       <GradientBackground />
-      <BokehLights />
-      <FloatingPetals />
-      <GoldSparkles />
-      <CornerOrnaments />
+
+<FloatingPetals />
+
+<GoldSparkles />
+
+{!isMobile && <BokehLights />}
+
+{!isMobile && <CornerOrnaments />}
 
       <main className="relative min-h-screen flex items-center justify-center px-4 py-4 sm:px-6 lg:px-8 sm:py-6">
         <motion.div
-          style={{ x: springX, y: springY }}
+          style={{
+  x: isMobile ? 0 : springX,
+  y: isMobile ? 0 : springY,
+}}
           className="w-full max-w-[720px]"
           animate={
             transitioning
@@ -223,10 +232,14 @@ const handleStart = () => {
                     lineHeight: 1.5,
                     marginTop: "0.5rem",
                   }}
-                  animate={{
-                    opacity: [0.9, 1, 0.9],
-                    scale: [0.98, 1.01, 0.98],
-                  }}
+                  animate={
+  isMobile
+    ? {}
+    : {
+        opacity: [0.9, 1, 0.9],
+        scale: [0.98, 1.01, 0.98],
+      }
+}
                   transition={{
                     duration: 4.5,
                     repeat: Infinity,
@@ -291,7 +304,11 @@ const handleStart = () => {
                     height="16"
                     viewBox="0 0 16 16"
                     fill="none"
-                    animate={{ x: [0, 3, 0] }}
+                    animate={
+  isMobile
+    ? {}
+    : { x: [0, 3, 0] }
+}
                     transition={{
                       duration: 1.6,
                       repeat: Infinity,
@@ -318,7 +335,13 @@ const handleStart = () => {
                   fontWeight: 400,
                   opacity: 0.7,
                 }}
-                animate={{ opacity: [0.45, 0.75, 0.45] }}
+                animate={
+  isMobile
+    ? {}
+    : {
+        opacity: [0.45, 0.75, 0.45],
+      }
+}
                 transition={{
                   duration: 3.5,
                   repeat: Infinity,
