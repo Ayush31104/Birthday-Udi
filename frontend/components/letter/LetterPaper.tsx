@@ -36,8 +36,9 @@ export default function LetterPaper({ onClose }: Props) {
           relative
           w-full
           max-w-2xl
-          h-[90vh]
-          max-h-[650px]
+          h-[92vh]
+          sm:h-[90vh]
+          max-h-[750px]
           flex
           flex-col
           overflow-hidden
@@ -77,19 +78,22 @@ export default function LetterPaper({ onClose }: Props) {
             backgroundSize: "18px 18px",
           }}
         />
-        
 
         {/* Close Button */}
         <button
           onClick={onClose}
           className="
             absolute
-            top-6
-            right-6
+            top-4
+            right-4
+            sm:top-6
+sm:right-6
+h-9
+w-9
+sm:h-10
+sm:w-10
             z-40
             flex
-            h-10
-            w-10
             items-center
             justify-center
             rounded-full
@@ -107,19 +111,20 @@ export default function LetterPaper({ onClose }: Props) {
         </button>
 
         {/* 1. HEADER SECTION (Fixed inside border) */}
-        <div className="relative px-8 sm:px-16 pt-12 pb-2 text-center shrink-0 z-20">
+        <div className="relative px-5 sm:px-16 pt-12 pb-2 text-center shrink-0 z-20">
           <h2
             className="
               mx-auto
               max-w-[580px]
-              text-2xl
-              sm:text-4xl
+              text-xl
+sm:text-3xl
+lg:text-4xl
               font-serif
               italic
               leading-tight
               text-[#6b5441]
             "
-            style={{paddingLeft:0}}
+            style={{ paddingLeft: 0 }}
           >
             {LETTER.heading}
           </h2>
@@ -129,18 +134,18 @@ export default function LetterPaper({ onClose }: Props) {
         {/* 2. SCROLLABLE INNER BODY CONTENT */}
         <div className="overflow-y-auto flex-1 z-20 px-8 sm:px-16 my-2">
           <div className="mx-auto w-full max-w-[580px] py-4">
-            
             {/* Greeting */}
             <p
               className="
                 mb-6
-                text-left
-                text-3xl
-                sm:text-4xl
+                text-center
+sm:text-left
+                text-2xl
+sm:text-4xl
                 font-['Great_Vibes']
                 text-[#6b4e3c]
               "
-              style={{paddingLeft:80}}
+              style={{ paddingLeft: 0 }}
             >
               Dear Udi,
             </p>
@@ -159,35 +164,34 @@ export default function LetterPaper({ onClose }: Props) {
                   mb-6
                   text-justify
                   font-serif
-                  text-base
-                  text-[16px]
-                  sm:text-[17px]
-                  leading-[1.9]
+                  text-[17px]
+sm:text-[18px]
+                  leading-8
+sm:leading-[1.9]
                   tracking-[0.01em]
                   text-[#4f4032]
-                  first-line:indent-8
+                  first-line:indent-0
+sm:first-line:indent-8
                 "
-                style={{paddingLeft:80}}
+                style={{ paddingLeft: 0 }}
               >
                 {para}
               </motion.p>
             ))}
-
           </div>
         </div>
 
         {/* 3. FOOTER SIGNATURE SECTION (Fixed inside border at bottom) */}
-        <div className="relative px-8 sm:px-10 pt-2 pb-10 text-right shrink-0 z-20 bg-gradient-to-t from-[#f2e8d8]/80 to-transparent">
+        <div className="relative px-5 sm:px-10 pt-2 pb-10 text-center sm:text-right shrink-0 z-20 bg-gradient-to-t from-[#f2e8d8]/80 to-transparent">
           <div className="mx-auto w-full max-w-[580px]">
             <p className="text-sm sm:text-base text-[#6b4e3c] italic">
               Yours Truly,
             </p>
             <p className="mt-1 text-2xl sm:text-3xl font-['Great_Vibes'] text-[#6b4e3c]">
               Ayush ❤️
-              </p>
+            </p>
           </div>
         </div>
-
       </motion.div>
     </motion.div>
   );
